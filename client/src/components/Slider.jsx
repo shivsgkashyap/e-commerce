@@ -1,7 +1,11 @@
-import { ArrowLeftOutlined, ArrowRightOutlined } from "@mui/icons-material";
+import {
+  ArrowLeftOutlined,
+  ArrowRightOutlined,
+  PropaneSharp,
+} from "@mui/icons-material";
 import { useState } from "react";
 import styled from "styled-components";
-import dummy from "../assets/dummy1.png";
+import { sliderItems } from "../data";
 
 const Container = styled.div`
   width: 100%;
@@ -33,7 +37,8 @@ const Arrow = styled.div`
 const Wrapper = styled.div`
   height: 100%;
   display: flex;
-  transform: translateX(0vw);
+  transform: translateX(${(props) => props.slideIndex * -100}vw);
+  transition: all 1s ease-in-out;
 `;
 
 const Slide = styled.div`
@@ -78,26 +83,36 @@ const Button = styled.button`
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
-  const handleClick = (direction) => {};
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSlideIndex((slideIndex) =>
+        setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2)
+      );
+    } else {
+      setSlideIndex((slideIndex) =>
+        setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0)
+      );
+    }
+  };
 
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowLeftOutlined />
       </Arrow>
-      <Wrapper>
-        <Slide bg="#f5fafd">
-          <ImgContainer>
-            <Image src={dummy} />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>SUMMER SALE</Title>
-            <Description>
-              DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF NEW ARRIVALS
-            </Description>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </Slide>
+      <Wrapper slideIndex={slideIndex}>
+        {sliderItems.map((item) => (
+          <Slide bg={item.bg}>
+            <ImgContainer>
+              <Image src={item.img} />
+            </ImgContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Description>{item.desc}</Description>
+              <Button>SHOP NOW</Button>
+            </InfoContainer>
+          </Slide>
+        ))}
       </Wrapper>
       <Arrow direction="right" onClick={() => handleClick("right")}>
         <ArrowRightOutlined />
