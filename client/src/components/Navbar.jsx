@@ -70,7 +70,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>SHIV.</Logo>
+          <Logo>CUT&SEW.</Logo>
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>
