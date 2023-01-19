@@ -78,6 +78,8 @@ const Description = styled.p`
 const Button = styled.button`
   background-color: transparent;
   padding: 0.625rem;
+  border-radius: 10px;
+  border: 1px solid black;
   cursor: pointer;
 `;
 
