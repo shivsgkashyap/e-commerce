@@ -54,15 +54,15 @@ export const popularProducts = [
   },
   {
     id: 2,
-    img: "https://cdn.shopify.com/s/files/1/0101/4832/products/Angela_Natural_Tee.png?v=1606780388",
+    img: "https://images.squarespace-cdn.com/content/v1/5983640ed7bdce30c2dbde9d/1594402773920-A1I2VC22UU0T5WI6QLNX/DiamondShotStudio_MarcinMuchalski_Clothing_0090.jpg?format=2500w",
   },
   {
     id: 3,
-    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+    img: "https://images.squarespace-cdn.com/content/v1/5983640ed7bdce30c2dbde9d/1552514851834-RZTRVAPDN5M3U60X2IWP/DiamondShotStudio_MarcinMuchalski_Clothing_0016.JPG?format=2500w",
   },
   {
     id: 4,
-    img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
+    img: "https://images.squarespace-cdn.com/content/v1/5983640ed7bdce30c2dbde9d/1580846471932-IUGB4I3Y52RFYBZAQWSI/DiamondShotStudio_MarcinMuchalski_Clothing_0077.jpg?format=2500w",
   },
   {
     id: 5,
@@ -70,11 +70,11 @@ export const popularProducts = [
   },
   {
     id: 6,
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    img: "https://images.squarespace-cdn.com/content/v1/5983640ed7bdce30c2dbde9d/1552514848041-2P14D32G2YOKLVZ5L53V/DiamondShotStudio_MarcinMuchalski_Clothing_0006.JPG?format=2500w",
   },
   {
     id: 7,
-    img: "https://www.vintageindustries.nl/download_front/qympzk1762/2217_Arrow_Jacket_Forest.png",
+    img: "https://images.squarespace-cdn.com/content/v1/5983640ed7bdce30c2dbde9d/1552514847336-EM68312GXCJ13F7A1V30/DiamondShotStudio_MarcinMuchalski_Clothing_0004.JPG?format=2500w",
   },
   {
     id: 8,
