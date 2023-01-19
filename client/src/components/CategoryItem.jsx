@@ -31,10 +31,10 @@ const Title = styled.h1`
 `;
 
 const Button = styled.button`
-  border:none;
+  border: none;
   padding: 1rem;
   background-color: white;
-  color:gray;
+  color: gray;
   cursor: pointer;
   font-weight: 600;
 `;
