@@ -3,28 +3,32 @@ import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
-import { Add, Description, Remove } from "@mui/icons-material";
+import { Add, Remove } from "@mui/icons-material";
+import { mobile } from "../responsive";
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 3.125rem;
   display: flex;
+  ${mobile({ padding: "0.625rem", flexDirection: "column" })}
 `;
 
-const ImgContainer = styled.div`
+const ImageContainer = styled.div`
   flex: 1;
 `;
 
-const Image = styled.image`
+const Image = styled.img`
   width: 100%;
   height: 90vh;
   object-fit: cover;
+  ${mobile({ height: "40vh" })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 0rem 3.125rem;
+  ${mobile({ padding: "0.625rem" })}
 `;
 
 const Title = styled.h1`
@@ -45,6 +49,7 @@ const FilterContainer = styled.div`
   margin: 1.875rem 0rem;
   display: flex;
   justify-content: space-between;
+  ${mobile({ width: "100%" })}
 `;
 
 const Filter = styled.div`
@@ -78,6 +83,7 @@ const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  ${mobile({ width: "100%" })}
 `;
 
 const AmountContainer = styled.div`
@@ -112,50 +118,52 @@ const Button = styled.button`
 const Product = () => {
   return (
     <>
-      <Announcement />
-      <Navbar />
-      <Wrapper>
-        <ImageContainer>
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg"></Image>
-        </ImageContainer>
-        <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
-          <Description>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum magnam
-            in deleniti molestias ea qui nulla quis sit dolores iure facere
-            itaque, quam eum eaque fuga ut, eos nihil veniam.
-          </Description>
-          <Price>$20</Price>
-          <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
-            </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
-                <FilterSizeOption>XXL</FilterSizeOption>
-              </FilterSize>
-            </Filter>
-          </FilterContainer>
-          <AddContainer>
-            <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
-            </AmountContainer>
-            <Button>ADD TO CART</Button>
-          </AddContainer>
-        </InfoContainer>
-      </Wrapper>
-      <Newsletter />
-      <Footer />
+      <Container>
+        <Navbar />
+        <Announcement />
+        <Wrapper>
+          <ImageContainer>
+            <Image src="https://i.ibb.co/S6qMxwr/jean.jpg"></Image>
+          </ImageContainer>
+          <InfoContainer>
+            <Title>Denim Jumpsuit</Title>
+            <Description>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum
+              magnam in deleniti molestias ea qui nulla quis sit dolores iure
+              facere itaque, quam eum eaque fuga ut, eos nihil veniam.
+            </Description>
+            <Price>$20</Price>
+            <FilterContainer>
+              <Filter>
+                <FilterTitle>Color</FilterTitle>
+                <FilterColor color="black" />
+                <FilterColor color="darkblue" />
+                <FilterColor color="gray" />
+              </Filter>
+              <Filter>
+                <FilterTitle>Size</FilterTitle>
+                <FilterSize>
+                  <FilterSizeOption>S</FilterSizeOption>
+                  <FilterSizeOption>M</FilterSizeOption>
+                  <FilterSizeOption>L</FilterSizeOption>
+                  <FilterSizeOption>XL</FilterSizeOption>
+                  <FilterSizeOption>XXL</FilterSizeOption>
+                </FilterSize>
+              </Filter>
+            </FilterContainer>
+            <AddContainer>
+              <AmountContainer>
+                <Remove />
+                <Amount>1</Amount>
+                <Add />
+              </AmountContainer>
+              <Button>ADD TO CART</Button>
+            </AddContainer>
+          </InfoContainer>
+        </Wrapper>
+        <Newsletter />
+        <Footer />
+      </Container>
     </>
   );
 };

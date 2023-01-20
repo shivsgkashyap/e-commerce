@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
+import { mobile } from "../responsive";
 
 const Container = styled.div``;
 
@@ -18,16 +19,20 @@ const FilterContainer = styled.div`
 
 const Filter = styled.div`
   margin: 1.25rem;
+  ${mobile({ width: "0rem 1.25rem", display: "flex", flexDirection: "column" })}
 `;
 
 const FilterText = styled.span`
   font-size: 1.25rem;
   font-weight: 600;
   margin-right: 1.25rem;
+  ${mobile({ marginRight: "0rem" })}
 `;
+
 const Select = styled.select`
   padding: 0.625rem;
   margin-right: 1.25rem;
+  ${mobile({ margin: "0.625rem 0rem" })}
 `;
 const Option = styled.option``;
 
@@ -40,10 +45,8 @@ const ProductList = () => {
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select>
-            <Option disabled selected>
-              Color
-            </Option>
+          <Select defaultValue="Color">
+            <Option disabled>Color</Option>
             <Option>White</Option>
             <Option>Black</Option>
             <Option>Red</Option>
@@ -51,10 +54,8 @@ const ProductList = () => {
             <Option>Yellow</Option>
             <Option>Green</Option>
           </Select>
-          <Select>
-            <Option disabled selected>
-              Size
-            </Option>
+          <Select defaultValue="Size">
+            <Option disabled>Size</Option>
             <Option>S</Option>
             <Option>M</Option>
             <Option>L</Option>
@@ -65,7 +66,7 @@ const ProductList = () => {
         <Filter>
           <FilterText>Sort Products:</FilterText>
           <Select>
-            <Option disabled>Newest</Option>
+            <Option>Newest</Option>
             <Option>Price (asc)</Option>
             <Option>Price (desc)</Option>
           </Select>

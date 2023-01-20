@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100vw;
@@ -38,6 +39,7 @@ const Input = styled.input`
   min-width: 40%;
   margin: 0.625rem 0;
   padding: 0.625rem;
+  border: 0.5px solid black;
 `;
 
 const Button = styled.button`
