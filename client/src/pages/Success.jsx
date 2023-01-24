@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { userRequest } from "../requestMethods";
 
 const Success = () => {
@@ -9,6 +9,7 @@ const Success = () => {
   const cart = location.state.cart;
   const currentUser = useSelector((state) => state.user.currentUser);
   const [orderId, setOrderId] = useState(null);
+  let navigate = useNavigate();
 
   useEffect(() => {
     const createOrder = async () => {
@@ -28,6 +29,10 @@ const Success = () => {
     data && createOrder();
   }, [cart, data, currentUser]);
 
+  const handleClick = () => {
+    navigate("/", { replace: true });
+  };
+
   return (
     <div
       style={{
@@ -40,8 +45,10 @@ const Success = () => {
     >
       {orderId
         ? `Order has been created successfully. Your order number is ${orderId}`
-        : `Successful. Your order is being prepared...`}
-      <button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</button>
+        : `Payment successful. Your order is being prepared...`}
+      <button style={{ padding: 10, marginTop: 20 }} onClick={handleClick}>
+        Go to Homepage
+      </button>
     </div>
   );
 };
