@@ -3,7 +3,8 @@ import { Search, ShoppingCartOutlined } from "@mui/icons-material";
 import Badge from "@mui/material/Badge";
 import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Container = styled.div`
   min-height: 4rem;
@@ -72,7 +73,21 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "0.75rem", marginLeft: "0.625rem" })}
 `;
 const Navbar = () => {
+  const [searchValue, setSearchValue] = useState("");
   const quantity = useSelector((state) => state.cart.quantity);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (searchValue) {
+      navigate(`/products/${searchValue}`);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleClick();
+    }
+  };
 
   return (
     <Container>
@@ -80,8 +95,15 @@ const Navbar = () => {
         <Left>
           <Language>EN</Language>
           <SearchContainer>
-            <Input placeholder="Search" />
-            <Search style={{ color: "gray", fontSize: "1rem" }} />
+            <Input
+              placeholder="Search"
+              onChange={(e) => setSearchValue(e.target.value.toLowerCase())}
+              onKeyPress={handleKeyPress}
+            />
+            <Search
+              style={{ color: "gray", fontSize: "1rem" }}
+              onClick={() => handleClick()}
+            />
           </SearchContainer>
         </Left>
         <Center>
