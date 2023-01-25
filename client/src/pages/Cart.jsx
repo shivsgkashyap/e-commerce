@@ -177,7 +177,7 @@ const Cart = () => {
           amount: cart.total * 100,
         });
         navigate("/success", {
-          state: { stripeData: res.data, products: cart },
+          state: { stripeData: res.data, cart: cart },
         });
       } catch (err) {}
     };
