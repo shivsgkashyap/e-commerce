@@ -1,3 +1,4 @@
+import { autocompleteClasses } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
@@ -37,6 +38,9 @@ const Success = () => {
     <div
       style={{
         height: "100vh",
+        width: "80vw",
+        margin: "auto",
+        padding: "2rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -44,8 +48,8 @@ const Success = () => {
       }}
     >
       {orderId
-        ? `Order has been created successfully. Your order number is ${orderId}`
-        : `Payment successful. Your order is being prepared...`}
+        ? `Order has been created successfully. Your order number is ${orderId}. You will receive email confirmation shortly. Thank you for shopping with Cut&Sew.`
+        : `Payment successful. Your order is being prepared. You will receive email confirmation shortly. Thank you for shopping with Cut&Sew.`}
       <button style={{ padding: 10, marginTop: 20 }} onClick={handleClick}>
         Go to Homepage
       </button>
