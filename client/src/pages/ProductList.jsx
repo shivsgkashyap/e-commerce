@@ -8,8 +8,6 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
-const Container = styled.div``;
-
 const Title = styled.h1`
   margin: 1.25rem;
 `;
@@ -53,7 +51,7 @@ const ProductList = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
       <Announcement />
       <Title>{cat.toUpperCase()}</Title>
@@ -90,7 +88,7 @@ const ProductList = () => {
       <Products cat={cat} filters={filters} sort={sort} />
       <Newsletter />
       <Footer />
-    </Container>
+    </>
   );
 };
 

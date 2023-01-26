@@ -11,9 +11,7 @@ import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 
-const Container = styled.div``;
-
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   padding: 3.125rem;
   display: flex;
   ${mobile({ padding: "0.625rem", flexDirection: "column" })}
@@ -37,7 +35,7 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 200;
+  font-weight: 600;
 `;
 
 const Description = styled.p`
@@ -129,8 +127,6 @@ const Product = () => {
   const [size, setSize] = useState("");
   const dispatch = useDispatch();
 
-  console.log(color);
-
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -156,7 +152,7 @@ const Product = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
       <Announcement />
       <Wrapper>
@@ -201,7 +197,7 @@ const Product = () => {
       </Wrapper>
       <Newsletter />
       <Footer />
-    </Container>
+    </>
   );
 };
 
