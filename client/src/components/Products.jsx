@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Product from "./Product";
 import axios from "axios";
 
-const Container = styled.div`
+const Container = styled.section`
   display: flex;
   padding: 1.25rem;
   flex-wrap: wrap;

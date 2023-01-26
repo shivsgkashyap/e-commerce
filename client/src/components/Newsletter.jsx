@@ -2,7 +2,7 @@ import { Send } from "@mui/icons-material";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 
-const Container = styled.div`
+const Container = styled.article`
   height: 60vh;
   background-color: #fcf5f5;
   display: flex;
