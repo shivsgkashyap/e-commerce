@@ -36,6 +36,12 @@ app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
 
+app.use(express.static("client/dist"));
+
+app.get("*", (req, res) =>
+  res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
+);
+
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 3000;
 mongoose.set("strictQuery", false);

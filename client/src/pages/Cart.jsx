@@ -1,4 +1,4 @@
-import { Add, Remove, DeleteForeverRounded } from "@mui/icons-material";
+import { DeleteForeverRounded } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
@@ -9,7 +9,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useNavigate } from "react-router-dom";
-import { clearProducts, removeProduct } from "../redux/cartRedux";
+import { removeProduct } from "../redux/cartRedux";
 
 const KEY = import.meta.env.VITE_APP_STRIPE;
 
