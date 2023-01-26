@@ -1,5 +1,5 @@
-import { Add, Remove, StayPrimaryPortraitRounded } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { Add, Remove, DeleteForeverRounded } from "@mui/icons-material";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -9,12 +9,11 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useNavigate } from "react-router-dom";
+import { clearProducts } from "../redux/cartRedux";
 
 const KEY = import.meta.env.VITE_APP_STRIPE;
 
-const Container = styled.div``;
-
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   padding: 1.25rem;
   ${mobile({ padding: "0.625rem" })}
 `;
@@ -24,7 +23,7 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const Top = styled.div`
+const Top = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -51,7 +50,7 @@ const TopText = styled.span`
   margin: 0rem 0.625rem;
 `;
 
-const Bottom = styled.div`
+const Bottom = styled.section`
   display: flex;
   justify-content: space-between;
   ${mobile({ flexDirection: "column" })}
@@ -83,9 +82,13 @@ const Details = styled.div`
   justify-content: space-around;
 `;
 
-const ProductName = styled.span``;
+const ProductName = styled.span`
+  ${mobile({ fontSize: "0.8rem" })}
+`;
 
-const ProductId = styled.span``;
+const ProductId = styled.span`
+  ${mobile({ fontSize: "0.7rem" })}
+`;
 
 const ProductColor = styled.div`
   width: 1.25rem;
@@ -107,18 +110,24 @@ const PriceDetail = styled.div`
 const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const AmountWrapper = styled.div`
+  display: flex;
+  align-items: center;
   margin-bottom: 1.25rem;
+  ${mobile({ marginTop: "1rem" })}
 `;
 
 const ProductAmount = styled.div`
   font-size: 1.5rem;
   margin: 0.3rem;
-  ${mobile({ margin: "0.3rem 1rem" })}
+  padding: 0rem 0.3em;
+  ${mobile({ margin: "0.3rem 1rem" })};
 `;
 
 const ProductPrice = styled.div`
   font-size: 1.875rem;
-  font-weight: 200;
   ${mobile({ marginBottom: "1.25rem" })}
 `;
 
@@ -164,6 +173,7 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -189,7 +199,7 @@ const Cart = () => {
   };
 
   return (
-    <Container>
+    <>
       <Navbar />
       <Announcement />
       <Wrapper>
@@ -221,13 +231,20 @@ const Cart = () => {
                   </Details>
                 </ProductDetail>
                 <PriceDetail>
-                  <ProductAmountContainer>
-                    <Add />
-                    <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove />
-                  </ProductAmountContainer>
+                  <AmountWrapper>
+                    <ProductAmountContainer>
+                      X<ProductAmount>{product.quantity}</ProductAmount>
+                    </ProductAmountContainer>
+                    <DeleteForeverRounded
+                      style={{
+                        color: "red",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => dispatch(clearProducts(product._id))}
+                    />
+                  </AmountWrapper>
                   <ProductPrice>
-                    $ {product.price * product.quantity}
+                    $ {product.price * product.quantity}.00
                   </ProductPrice>
                 </PriceDetail>
               </Product>
@@ -238,7 +255,7 @@ const Cart = () => {
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}.00</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
@@ -250,7 +267,7 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}.00</SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
               name="CUT&SEW"
@@ -268,7 +285,7 @@ const Cart = () => {
         </Bottom>
       </Wrapper>
       <Footer />
-    </Container>
+    </>
   );
 };
 
