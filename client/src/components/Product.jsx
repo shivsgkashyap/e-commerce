@@ -77,9 +77,6 @@ const Product = ({ item }) => {
       <Image src={item.img} alt="preview image" />
       <Info>
         <Icon>
-          <ShoppingCartOutlined />
-        </Icon>
-        <Icon>
           <Link to={`/product/${item._id}`}>
             <SearchOutlined />
           </Link>
