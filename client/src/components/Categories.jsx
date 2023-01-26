@@ -3,7 +3,7 @@ import { categories } from "../data";
 import { mobile } from "../responsive";
 import CategoryItem from "./CategoryItem";
 
-const Container = styled.div`
+const Container = styled.section`
   display: flex;
   padding: 1.25rem;
   justify-content: space-between;
