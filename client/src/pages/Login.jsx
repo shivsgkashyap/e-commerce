@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const Container = styled.div`
+const Container = styled.main`
   width: 100vw;
   height: 100vh;
   background: linear-gradient(
@@ -19,7 +20,7 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   width: 25%;
   padding: 1.25rem;
   background-color: white;
@@ -41,8 +42,9 @@ const Input = styled.input`
   flex: 1;
   min-width: 40%;
   margin: 0.625rem 0;
-  padding: 0.625rem;
+  padding: 1rem;
   border: 0.5px solid black;
+  outline: none;
 `;
 
 const Button = styled.button`
@@ -68,6 +70,8 @@ const Link = styled.a`
 
 const Error = styled.span`
   color: red;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
 `;
 
 const Login = () => {
@@ -75,6 +79,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -86,20 +91,25 @@ const Login = () => {
         <Title>SIGN IN</Title>
         <Form>
           <Input
-            placeholder="Username"
+            placeholder="Username*"
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
-            placeholder="Password"
+            placeholder="Password*"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button onClick={handleClick} disabled={isFetching}>
             LOGIN
           </Button>
-          {error && <Error>Something went wrong...</Error>}
-          <Link>FORGOT YOUR PASSWORD?</Link>
-          <Link>DON'T HAVE AN ACCOUNT? REGISTER HERE</Link>
+          {error && <Error>{error}</Error>}
+          <Link
+            onClick={() => {
+              navigate("/register");
+            }}
+          >
+            DON'T HAVE AN ACCOUNT? REGISTER HERE
+          </Link>
         </Form>
       </Wrapper>
     </Container>
