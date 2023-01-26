@@ -1,7 +1,8 @@
 import { autocompleteClasses } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
+import { clearProducts } from "../redux/cartRedux";
 import { userRequest } from "../requestMethods";
 
 const Success = () => {
@@ -11,6 +12,7 @@ const Success = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
   const [orderId, setOrderId] = useState(null);
   let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const createOrder = async () => {
@@ -30,12 +32,18 @@ const Success = () => {
     data && createOrder();
   }, [cart, data, currentUser]);
 
+  useEffect(() => {
+    if (orderId) {
+      dispatch(clearProducts());
+    }
+  }, [orderId]);
+
   const handleClick = () => {
     navigate("/", { replace: true });
   };
 
   return (
-    <div
+    <main
       style={{
         height: "100vh",
         width: "80vw",
@@ -49,11 +57,11 @@ const Success = () => {
     >
       {orderId
         ? `Order has been created successfully. Your order number is ${orderId}. You will receive email confirmation shortly. Thank you for shopping with Cut&Sew.`
-        : `Payment successful. Your order is being prepared. You will receive email confirmation shortly. Thank you for shopping with Cut&Sew.`}
+        : `Order unsuccessful. Please ensure you are logged in to place an order. If the problem persists please contact the sales department. Thank you for shopping with Cut&Sew.`}
       <button style={{ padding: 10, marginTop: 20 }} onClick={handleClick}>
         Go to Homepage
       </button>
-    </div>
+    </main>
   );
 };
 
