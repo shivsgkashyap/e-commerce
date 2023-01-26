@@ -9,7 +9,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useNavigate } from "react-router-dom";
-import { clearProducts } from "../redux/cartRedux";
+import { clearProducts, removeProduct } from "../redux/cartRedux";
 
 const KEY = import.meta.env.VITE_APP_STRIPE;
 
@@ -167,6 +167,7 @@ const Button = styled.button`
   background-color: black;
   color: white;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 const Cart = () => {
@@ -240,7 +241,7 @@ const Cart = () => {
                         color: "red",
                         cursor: "pointer",
                       }}
-                      onClick={() => dispatch(clearProducts(product._id))}
+                      onClick={() => dispatch(removeProduct(product._id))}
                     />
                   </AmountWrapper>
                   <ProductPrice>
