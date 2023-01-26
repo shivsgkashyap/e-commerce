@@ -7,6 +7,8 @@ const jwt = require("jsonwebtoken");
 router.post("/register", async (req, res) => {
   const newUser = new User({
     username: req.body.username,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     password: CryptoJS.AES.encrypt(
       req.body.password,
@@ -15,10 +17,22 @@ router.post("/register", async (req, res) => {
   });
 
   try {
+    const user = await User.findOne({ username: req.body.username });
+    if (user) {
+      return res.status(409).json({ message: "Username already in use!" });
+    }
+
+    const userEmail = await User.findOne({ email: req.body.email });
+    if (userEmail) {
+      return res
+        .status(409)
+        .json({ message: "Email address already registered!" });
+    }
+
     const savedUser = await newUser.save();
-    res.status(200).json(savedUser);
+    return res.status(200).json(savedUser);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ message: "Cannot register user at the moment!" });
   }
 });
 
@@ -26,7 +40,9 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    !user && res.status(401).json("Invalid credentials!");
+    if (!user) {
+      return res.status(401).json({ message: "Invalid credentials!"});
+    }
 
     const hashedPassword = CryptoJS.AES.decrypt(
       user.password,
@@ -34,8 +50,9 @@ router.post("/login", async (req, res) => {
     );
     const originalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
-    originalPassword !== req.body.password &&
-      res.status(401).json("Incorrect password!");
+    if (originalPassword !== req.body.password) {
+      return res.status(401).json({message: "Incorrect password!"});
+    }
 
     const accessToken = jwt.sign(
       {
@@ -50,7 +67,7 @@ router.post("/login", async (req, res) => {
 
     return res.status(200).json({ ...others, accessToken });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ message: "Cannot login at the moment!" });
   }
 });
 
