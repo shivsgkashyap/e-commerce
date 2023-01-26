@@ -29,7 +29,13 @@ app.use(
     },
   })
 );
-app.use(helmet({ crossOriginEmbedderPolicy: false, originAgentCluster: true }));
+app.use(
+  helmet({
+    crossOriginEmbedderPolicy: false,
+    originAgentCluster: true,
+    contentSecurityPolicy: false,
+  })
+);
 app.use(
   helmet.contentSecurityPolicy({
     useDefaults: true,

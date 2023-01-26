@@ -367,7 +367,7 @@ Error generating stack: `+o.message+`
 `,Bk=O.img`
   height: 75%;
   z-index: 2;
-  object-fit: cover;
+  object-fit: contain;
 `,kg=O.div`
   width: 2.5rem;
   height: 2.5rem;
