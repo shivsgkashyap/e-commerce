@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled.header`
   min-height: 2rem;
   background-color: teal;
   color: white;
