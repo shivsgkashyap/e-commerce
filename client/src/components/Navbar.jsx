@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { Search, ShoppingCartOutlined } from "@mui/icons-material";
 import Badge from "@mui/material/Badge";
 import { mobile } from "../responsive";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { logout } from "../redux/userRedux";
 
-const Container = styled.div`
+const Container = styled.nav`
   min-height: 4rem;
   ${mobile({ minHeight: "3rem" })}
 `;
@@ -74,8 +75,10 @@ const MenuItem = styled.div`
 `;
 const Navbar = () => {
   const [searchValue, setSearchValue] = useState("");
-  const quantity = useSelector((state) => state.cart.quantity);
+  const quantity = useSelector((state) => state.cart.products);
+  const user = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     if (searchValue) {
@@ -87,6 +90,10 @@ const Navbar = () => {
     if (e.key === "Enter") {
       handleClick();
     }
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   return (
@@ -101,7 +108,7 @@ const Navbar = () => {
               onKeyPress={handleKeyPress}
             />
             <Search
-              style={{ color: "gray", fontSize: "1rem" }}
+              style={{ color: "gray", fontSize: "1rem", cursor: "pointer" }}
               onClick={() => handleClick()}
             />
           </SearchContainer>
@@ -118,12 +125,19 @@ const Navbar = () => {
           >
             <MenuItem>REGISTER</MenuItem>
           </Link>
-          <Link to="/login" style={{ textDecoration: "none", color: "black" }}>
-            <MenuItem>SIGN IN</MenuItem>
-          </Link>
+          {user ? (
+            <MenuItem onClick={handleLogout}>SIGN OUT</MenuItem>
+          ) : (
+            <Link
+              to="/login"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <MenuItem>SIGN IN</MenuItem>
+            </Link>
+          )}
           <Link to="/cart">
             <MenuItem>
-              <Badge badgeContent={quantity} color="primary">
+              <Badge badgeContent={quantity.length} color="primary">
                 <ShoppingCartOutlined />
               </Badge>
             </MenuItem>
