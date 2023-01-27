@@ -49,7 +49,7 @@ const Circle = styled.div`
 const Image = styled.img`
   height: 75%;
   z-index: 2;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 const Icon = styled.div`

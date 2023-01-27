@@ -11,8 +11,6 @@ import { userRequest } from "../requestMethods";
 import { useNavigate } from "react-router-dom";
 import { removeProduct } from "../redux/cartRedux";
 
-const KEY = import.meta.env.VITE_APP_STRIPE;
-
 const Wrapper = styled.main`
   padding: 1.25rem;
   ${mobile({ padding: "0.625rem" })}
@@ -278,7 +276,7 @@ const Cart = () => {
               description={`Your total is $${cart.total}`}
               amount={cart.total * 100}
               token={onToken}
-              stripeKey={KEY}
+              stripeKey="pk_test_51MTNUeIr660vcc8qgm9M6JkrTcNay721sreDAcG2YTID2Ub8LOcck9YOSaPra6uioqFewuo5OV9I19IByyaWeEJw004Y87slHg"
             >
               <Button>CHECKOUT NOW</Button>
             </StripeCheckout>
