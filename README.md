@@ -1,7 +1,7 @@
 # Full-Stack E-Commerce App (MERN)
 
 
-MERN Stack Shopping App built from scratch. React + Redux frontend and Node.js + Express REST API with MongoDB. Includes Shopping API with Stripe payment method and register/login function with JWT authorization and CryptoJS password encryption. Please note: this app is hosted on Cyclic.sh and may take a few seconds to fully load.
+MERN stack shopping app built from scratch. React + Redux frontend and Node.js + Express REST API with MongoDB. Includes shopping API with Stripe payment method and register/login function with JWT authorization and CryptoJS password encryption. Please note: this app is hosted on Cyclic.sh and may take a few seconds to fully load.
 
 # [LIVE DEMO](https://aggressive-crab-slip.cyclic.app/) :point_left:
 
