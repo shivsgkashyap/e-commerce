@@ -33,6 +33,7 @@ app.use(
   helmet({
     crossOriginEmbedderPolicy: false,
     originAgentCluster: true,
+    contentSecurityPolicy: false,
   })
 );
 app.use(
