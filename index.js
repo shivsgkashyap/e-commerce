@@ -22,14 +22,6 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(
-  helmet.contentSecurityPolicy({
-    useDefaults: true,
-    directives: {
-      "img-src": ["'self'", "https: data:"],
-    },
-  })
-);
-app.use(
   helmet({
     crossOriginEmbedderPolicy: false,
     originAgentCluster: true,
