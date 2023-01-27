@@ -41,6 +41,7 @@ app.use(
     directives: {
       "img-src": ["'self'", "https: data: blob:"],
       "script-src": ["'self'", "https://checkout.stripe.com/checkout.js"],
+      "frame-src": ["data:"],
     },
   })
 );
