@@ -33,7 +33,6 @@ app.use(
   helmet({
     crossOriginEmbedderPolicy: false,
     originAgentCluster: true,
-    contentSecurityPolicy: false,
   })
 );
 app.use(
@@ -41,6 +40,7 @@ app.use(
     useDefaults: true,
     directives: {
       "img-src": ["'self'", "https: data: blob:"],
+      "script-src": ["'self'", "https://checkout.stripe.com/"],
     },
   })
 );
