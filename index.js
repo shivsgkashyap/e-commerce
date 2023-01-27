@@ -40,7 +40,7 @@ app.use(
     useDefaults: true,
     directives: {
       "img-src": ["'self'", "https: data: blob:"],
-      "script-src": ["'self'", "https://checkout.stripe.com/"],
+      "script-src": ["'self'", "https://checkout.stripe.com/checkout.js"],
     },
   })
 );
