@@ -1,5 +1,6 @@
 # Full-Stack E-Commerce App (MERN)
 
+<img width="750" alt="Screenshot 2023-01-27 at 15 00 51" src="https://user-images.githubusercontent.com/89941894/216085141-56fa6aab-d230-4972-9595-4404b69d25e9.png">
 
 MERN stack shopping app built from scratch. React + Redux frontend and Node.js + Express REST API with MongoDB. Includes shopping API with Stripe payment method and register/login function with JWT authorization and CryptoJS password encryption. Please note: this app is hosted on Cyclic.sh and may take a few seconds to fully load.
 
